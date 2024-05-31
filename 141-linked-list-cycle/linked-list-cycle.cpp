@@ -9,16 +9,15 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-   ListNode* slow = head;
-   ListNode* fast=  head;
-    while(fast!=NULL && fast->next!=NULL){
-        slow=slow->next;
-        fast=fast->next->next;    // if the loop is not there move the slow pointer by one and fast pointer by two
-    
-        if(slow==fast){
-            return true;     //loop is detected;
+         map<ListNode* , int > map;
+      ListNode* temp=head;
+      while(temp!=NULL){
+        if(map.find(temp)!=map.end()){
+            return true;
         }
-   }
-   return false;
+        map[temp]=1;
+        temp=temp->next;
+      }  
+      return false;
     }
 };
