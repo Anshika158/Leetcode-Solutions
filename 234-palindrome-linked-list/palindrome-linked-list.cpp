@@ -49,6 +49,7 @@ public:
         first=first->next;
         second=second->next;
        }
+       reverse(newHead);
        return true;
 
 
