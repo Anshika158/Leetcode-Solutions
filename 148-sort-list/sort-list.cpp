@@ -23,15 +23,23 @@ public:
         temp=temp->next;
      }
      sort(arr.begin() , arr.end());
-     int count = arr.size();
+     //int count = arr.size();
 
-     temp=head;
-     while(temp){
-        for(int i =0 ; i<count ; i++){
-            temp->val=arr[i];
-            temp=temp->next;
-        }  
-     }
+    //  temp= head;
+    //  while(temp){
+    //     for(int i =0 ; i<count ; i++){
+    //         temp->val=arr[i];
+    //         temp=temp->next;
+    //     }  
+    //  }
+
+    temp = head;
+    int i = 0 ;
+    while(temp){
+        temp->val = arr[i++];
+        temp= temp->next;
+
+    }
      return head;
     }
 };
