@@ -33,14 +33,21 @@ public:
     //     }  
     //  }
 
-    temp = head;
-    int i = 0 ;
-    while(temp){
-        // first it will store the value then it will increment i value;
-        temp->val = arr[i++];
-        temp= temp->next;
+    // temp = head;
+    // int i = 0 ;
+    // while(temp){
+    //     // first it will store the value then it will increment i value;
+    //     temp->val = arr[i++];
+    //     temp= temp->next;
 
-    }
-     return head;
+    // }
+    //  return head;
+
+        temp=head;
+        for(int it : arr){
+            temp->val=arr;
+            temp=temp->next;
+        }
+        return head;
     }
 };
