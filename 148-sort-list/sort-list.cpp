@@ -36,6 +36,7 @@ public:
     temp = head;
     int i = 0 ;
     while(temp){
+        // first it will store the value then it will increment i value;
         temp->val = arr[i++];
         temp= temp->next;
 
