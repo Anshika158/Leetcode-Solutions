@@ -24,19 +24,61 @@ public:
     //   }
     //   return NULL;
 
-//2nd approach Hashing
-    unordered_set<ListNode*> st;
-    ListNode* temp=headA;
-    while(headA){
-        st.insert(headA);
-        headA=headA->next;
+// //2nd approach Hashing
+//     unordered_set<ListNode*> st;
+//     ListNode* temp=headA;
+//     while(headA){
+//         st.insert(headA);
+//         headA=headA->next;
+//     }
+//     while(headB){
+//         if(st.find(headB)!=st.end()){
+//             return headB;
+//         }
+//         headB=headB->next;
+//     }
+//     return NULL;
+
+int countA = 0;
+int countB = 0 ;
+ListNode* tempA = headA;
+ListNode* tempB = headB;
+while(tempA){
+    countA++;
+    tempA=tempA->next;
+}
+while(tempB){
+    countB++;
+    tempB=tempB->next;
+}
+int diff= abs(countA-countB);
+tempA=headA;
+tempB=headB;
+    if(countA>countB){
+    while(diff>0){
+     
+    tempA=tempA->next;
+       diff--;
     }
-    while(headB){
-        if(st.find(headB)!=st.end()){
-            return headB;
+    }else{
+        while(diff>0){
+           
+            tempB=tempB->next;
+             diff--;
         }
-        headB=headB->next;
     }
-    return NULL;
+
+while (tempA && tempB && tempA != tempB) {
+    tempA = tempA->next;
+    tempB = tempB->next;
+}
+
+// If tempA and tempB are equal, it means there's an intersection
+if (tempA == tempB) {
+    return tempA;
+}
+
+return NULL;
+
     }
 };
