@@ -6,40 +6,58 @@ public:
     }
     
     void push(int x) {
-        while(!input.empty()){
-            output.push(input.top());
-            input.pop();
-        }
-        cout<<"the element pushed is "<<x <<endl;
-        input.push(x);
+        // while(!input.empty()){
+        //     output.push(input.top());
+        //     input.pop();
+        // }
+        // cout<<"the element pushed is "<<x <<endl;
+        // input.push(x);
 
-        while(!output.empty()){
-            input.push(output.top());
-            output.pop();
-        }
+        // while(!output.empty()){
+        //     input.push(output.top());
+        //     output.pop();
+        // }
+
+        //Approach 2
+        cout<<"The Element is pushed "<<x<<endl;
+        input.push(x);
     }
     
     int pop() {
-        if(input.empty()){
-            cout<<"The stack is empty"<<endl;
-            exit(0);
+        // if(input.empty()){
+        //     cout<<"The stack is empty"<<endl;
+        //     exit(0);
+        // }
+        // int val = input.top();
+        // input.pop();
+        // return val;
+
+        //Approach 2
+        if(output.empty()){
+            while(input.size()){
+                output.push(input.top());
+                input.pop();
+            }
         }
-        int val = input.top();
-        input.pop();
-        return val;
+        int x = output.top();
+        output.pop();
+        return x;
     }
     
     int peek() {
-       if(input.empty()){
-        cout<<"The stack is Empty"<<endl;
-        exit(0);
+       if(output.empty()){
+        while(input.size()){
+            output.push(input.top());
+            input.pop();
+        }
+        return output.top();
        }
-       int val =input.top();
+       int val =output.top();
        return val;
     }
     
     bool empty() {
-        return input.empty();
+        return output.empty()&&input.empty();
     }
 };
 
