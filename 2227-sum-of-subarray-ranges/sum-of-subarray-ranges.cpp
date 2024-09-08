@@ -6,7 +6,7 @@ public:
 
         for(int i=0 ; i<n ; i++){
             int minval = nums[i] , maxval = nums[i];
-            for(int j=i; j<n ; j++){
+            for(int j=i+1; j<n ; j++){
                 minval = min(minval , nums[j]);
                 maxval = max(maxval , nums[j]);
 
