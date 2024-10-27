@@ -2,24 +2,22 @@ class Solution {
 public:
     int characterReplacement(string s, int k) {
         int size = s.size();
-        int maxlen = 0;
-        int maxf = 0;
+        int maxf = 0, maxlen = 0, right = 0, left = 0;
         int hash[26] = {0};
-        
-        int left = 0;
-        for (int right = 0; right < size; right++) {
+
+        while (right < size) {
             hash[s[right] - 'A']++;
             maxf = max(maxf, hash[s[right] - 'A']);
-            
-            // Calculate the number of changes required
-            while ((right - left + 1) - maxf > k) {
+            int changes = (right - left + 1) - maxf;
+            while (changes > k) {
                 hash[s[left] - 'A']--;
                 left++;
+                changes = (right - left + 1) - maxf;
             }
-            
             maxlen = max(maxlen, right - left + 1);
+            right++;
         }
-        
+
         return maxlen;
     }
 };
