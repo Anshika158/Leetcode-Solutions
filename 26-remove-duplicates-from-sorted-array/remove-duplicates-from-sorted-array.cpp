@@ -4,6 +4,6 @@ public:
         set<int> s(nums.begin() , nums.end());
         nums.assign(s.begin() , s.end());
         
-        return nums.size();
+        return s.size();
     }
 };
