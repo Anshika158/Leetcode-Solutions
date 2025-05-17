@@ -11,28 +11,53 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* temp = head ;
-        int count = 0;
-        while(temp!=nullptr){
-            count++;
-            temp=temp->next;
+        ListNode* fast = head ;
+        for(int i=0 ; i<n ; i++ ){
+            fast=fast->next;
         }
-        int deleten = count-n ;
-        if(count==n){
-            ListNode* newhead = head->next;
-            return newhead;
+         if (fast == nullptr) {
+            ListNode* del = head;
+            head = head->next;
+            delete del;
+            return head;
         }
-        temp=head;
-        while(temp!=nullptr){
-           deleten--;
-           if(deleten==0){
-            break;
-           }
-           temp=temp->next;
+        ListNode* slow = head;
+        while(fast->next != nullptr){
+            slow=slow->next;
+            fast=fast->next;
         }
-        ListNode* del = temp->next;
-        temp->next = temp->next->next;
+        ListNode* del = slow->next;
+        slow->next=slow->next->next;
         delete(del);
-        return head;   
+        return head;
+        
     }
 };
+// class Solution {
+// public:
+//     ListNode* removeNthFromEnd(ListNode* head, int n) {
+//         ListNode* temp = head ;
+//         int count = 0;
+//         while(temp!=nullptr){
+//             count++;
+//             temp=temp->next;
+//         }
+//         int deleten = count-n ;
+//         if(count==n){
+//             ListNode* newhead = head->next;
+//             return newhead;
+//         }
+//         temp=head;
+//         while(temp!=nullptr){
+//            deleten--;
+//            if(deleten==0){
+//             break;
+//            }
+//            temp=temp->next;
+//         }
+//         ListNode* del = temp->next;
+//         temp->next = temp->next->next;
+//         delete(del);
+//         return head;   
+//     }
+// };
