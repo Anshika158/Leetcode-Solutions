@@ -11,48 +11,27 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head==NULL || head->next == NULL){
+        if(head==nullptr){
+            return 0;
+        }
+        ListNode* temp = head;
+        int count=1;
+        while(temp->next!=nullptr){
+            count++;
+            temp=temp->next;
+        }
+        k = k%count;
+        if(k==0){
             return head;
         }
-        int count=1;
-        ListNode* temp = head;
-        while(temp->next!=NULL){
-        count++;
-        temp=temp->next;
+        temp->next=head;
+        int end = count-k;
+        while(end!=0){
+            temp=temp->next;
+            end--;
         }
-        // if(count==k || k%count==0){
-        //     return head;
-        // }
-        // // we have to rotate till k will not become zero;
-        // ListNode* slow = head;
-        // ListNode* fast = head->next;
-        // while(k!=0){
-        // while(fast->next!=NULL){
-        //     slow=slow->next;
-        //     fast=fast->next;
-        // }
-        // ListNode* storeHead = head;
-        // fast->next=head;
-        // head->next=storeHead;
-        // slow->next=NULL;
-        // }
-
-        // return head;
-
-         temp->next=head;
-
-         k=k%count;
-         int newK = count - k ;
-
-          ListNode* newTail = head;
-        for (int i = 1; i < newK; i++) {
-            newTail = newTail->next;
-        }
-
-        // Step 5: Break the circular list to get the new head
-        ListNode* newHead = newTail->next;
-        newTail->next = NULL;
-
-        return newHead;
+        head=temp->next;
+        temp->next=nullptr;
+        return head;
     }
 };
