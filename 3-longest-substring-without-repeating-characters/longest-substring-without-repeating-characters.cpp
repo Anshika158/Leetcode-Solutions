@@ -1,47 +1,44 @@
+// class Solution {
+// public:
+//     int lengthOfLongestSubstring(string s) {
+//         if(s.length()==0){
+//             return 0;
+//         }
+//         int maxAns = INT_MIN;
+//         for(int i=0 ;i<s.length() ; i++){
+//             unordered_set<int> hashmap;
+//             for(int j=i ; j<s.length();j++){
+//                 if(hashmap.find(s[j]) != hashmap.end()){
+//                     maxAns=max(maxAns , j-i);
+//                     break;
+//                 }
+//                 hashmap.insert(s[j]);
+//             }
+//         }
+//     return maxAns;
+//     }
+// };
+
+//OPTIMIZED SOLUTION 
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        int maxans = 0 ;
-        int size = s.size();
-        if(size==0){
+        if(s.length()==0){
             return 0;
         }
-        if(size==1){
-            return 1;
-        }
-        for(int i = 0 ; i<size ; i++){
-            unordered_set<char> set;
-            for(int j = i ; j<size ; j++){
-                if(set.find(s[j]) != set.end()){
-                    maxans = max(maxans , j-i);
-                    break;
+        int maxans = INT_MIN;
+        int left=0 ; 
+        unordered_set<int> set;
+        for(int right = 0 ; right<s.length() ; right++){
+            if(set.find(s[right])!=set.end()){
+                while(left<right && set.find(s[right])!=set.end()){
+                    set.erase(s[left]);
+                    left++;
                 }
-                set.insert(s[j]);
             }
-            maxans = max(maxans , (int)set.size());
-
+            set.insert(s[right]);
+            maxans=max(maxans, right-left+1);
         }
         return maxans;
     }
 };
-
-// class Solution {
-// public:
-//     int lengthOfLongestSubstring(string s) {
-//         vector<int> mpp(256,-1);
-//         int left =0 , right = 0 ;
-//         int length = 0;
-//         int size = s.size();
-//         while(right<size){
-//             if(mpp[s[right]] != -1){
-//                 left = max(mpp[s[right]]+1 , left);
-//             }
-//                 mpp[s[right]]=right;
-//                 length=max(length , right-left+1);
-//                 right++;
-            
-           
-//         }
-//          return length;
-//     }
-// };
