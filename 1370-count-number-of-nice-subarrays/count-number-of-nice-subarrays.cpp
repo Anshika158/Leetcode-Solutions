@@ -1,23 +1,23 @@
 class Solution {
 public:
     int subarrays(vector<int>& nums, int k){
-        int l= 0 , r=0 , size=nums.size() , sum = 0 , count = 0 ;
-        while(r<size){
-            if(k<0){
-                return 0;
+        int left=0 , right=0  , n=nums.size() , count =0 ,sum=0;
+        if(k<0){
+        return 0;
+       }
+        while(right<n){
+            sum+=nums[right]%2;
+            while(sum>k){
+                sum-=nums[left]%2;
+                left++;
             }
-           sum += nums[r]%2;
-           while(sum>k){
-                sum = sum - (nums[l]%2);
-                l++;
-           }
-           count = count + r-l+1;
-           r++;
-        } 
-        return count ;
+            count+=right-left+1;
+            right++;
+        }
+    return count;
     }
     int numberOfSubarrays(vector<int>& nums, int k) {
-        return subarrays(nums , k)-subarrays(nums , k-1);
+        return subarrays(nums,k)-subarrays(nums,k-1);
 
     }
 };
