@@ -27,6 +27,6 @@ public:
             }
             depth++;
         }
-        return depth--;
+        return depth;
     }
 };
