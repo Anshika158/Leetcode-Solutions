@@ -1,25 +1,17 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        
-        int size = nums.size();
-        int len = size+1;
-        vector<int>temp(len);
-        for(int i =0 ; i<len ; i++){
-            temp[i]=i;
+        int n=nums.size();
+        vector<int>visited(n+1,0);
+        for(int i=0 ;i< n ; i++){
+            int temp=nums[i];
+            visited[temp]=1;
         }
-        
-        sort(nums.begin() , nums.end());
-        int j;
-        for(j =0 ; j<size ; j++){
-            if(nums[j]==temp[j]){
-                continue;
-            }
-            else{
-                return temp[j];
-                
+        for(int i=0 ; i<visited.size() ; i++){
+            if(visited[i]==0){
+                return i;
             }
         }
-        return size;
+        return 0;
     }
 };
