@@ -1,13 +1,25 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-       sort(nums.begin(), nums.end());
-       int i;
-       for(i=0 ; i<nums.size()-1;i+=2){
-        if(nums[i]!=nums[i+1]){
-            return nums[i];
+        // int n=nums.size();
+        // unordered_map<int,int>freq;
+        // for(auto num : nums){
+        //    freq[num]++;
+        // }
+        // for(auto it: freq){
+        //     if(it.second==1){
+        //         return it.first;
+        //     }
+        // }
+        // return -1;
+
+        //OPTIMAL APPROACH USING XOR OPERATION
+
+        int xorVal=0;
+        int n=nums.size();
+        for(int i=0 ; i<n ; i++){
+            xorVal^=nums[i];
         }
-       } 
-       return nums[nums.size()-1];
+        return xorVal;
     }
 };
