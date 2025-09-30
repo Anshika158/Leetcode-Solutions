@@ -9,28 +9,27 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if(head==nullptr || head->next==nullptr){
-            return false;
-        }
-    //     unordered_set<ListNode*> st;
-    //     ListNode* temp= head;
-    //     while(temp!=nullptr){
-    //         if(st.find(temp) !=st.end()){
-    //            return true;
-    //         }
-    //         st.insert(temp);
-    //         temp=temp->next;
-            
-    //     }
+    
+    // HASHING APPROACH
+        // unordered_map<ListNode* , int> mpp;
+        // ListNode* curr = head;
+        // while(curr!=NULL){
+        //     if(mpp.find(curr)!=mpp.end()){
+        //         return true;
+        //     }
+        //     mpp[curr]=1;
+        //     curr=curr->next;
+        // }
+        // return false;
 
-    // return false;
-    ListNode* slow=head;
-    ListNode* fast = head;
-    while(fast!=nullptr && fast->next !=nullptr ){
-        slow=slow->next;
-        fast=fast->next->next;
-        if(slow==fast) return true;
-    }
-    return false;
+    //SLOW AND FAST POINTER APPROACH
+        ListNode* slow=head;
+        ListNode* fast = head;
+        while(fast!=NULL && fast->next != NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast) return true;
+        }
+        return false;
     }
 };
