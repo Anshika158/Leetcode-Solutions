@@ -10,44 +10,45 @@
  */
 class Solution {
 public:
+   
     ListNode* sortList(ListNode* head) {
-     vector<int> arr;
-     if(head==NULL || head->next == NULL){
-        return head;
-     }
-     ListNode* temp = head;
 
-     
-    while(temp){
-        arr.push_back(temp->val);
-        temp=temp->next;
-     }
-     sort(arr.begin() , arr.end());
-     //int count = arr.size();
-
-    //  temp= head;
-    //  while(temp){
-    //     for(int i =0 ; i<count ; i++){
-    //         temp->val=arr[i];
-    //         temp=temp->next;
-    //     }  
-    //  }
-
-    // temp = head;
-    // int i = 0 ;
-    // while(temp){
-    //     // first it will store the value then it will increment i value;
-    //     temp->val = arr[i++];
-    //     temp= temp->next;
-
-    // }
-    //  return head;
-
-        temp=head;
-        for(int it : arr){
-            temp->val=arr;
-            temp=temp->next;
+//INTUTION MERGE SORT APPROACH
+        // Step-1 Split the middle into two halves
+        if (!head || !head->next) return head;
+        ListNode* slow=head;
+        ListNode* fast=head->next;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        return head;
+        ListNode* mid = slow->next;
+        slow->next=nullptr;
+
+        // Step-2 Sort each part
+        ListNode* left = sortList(head);
+        ListNode* right = sortList(mid);
+
+        //Step-3 Merge two sorted halves
+        return merge(left , right);
+    }
+     ListNode* merge(ListNode* l1 , ListNode* l2){
+        ListNode* dummy = new ListNode(0);
+        ListNode* tail = dummy;
+        while(l1 && l2){
+            if(l1->val < l2->val){
+                tail->next=l1;
+                l1=l1->next;
+            }else{
+                tail->next=l2;
+                l2=l2->next;
+            }tail=tail->next;
+        }
+        if(l1!=nullptr){
+            tail->next=l1;
+        }else{
+            tail->next=l2;
+        }
+        return dummy->next;
     }
 };
