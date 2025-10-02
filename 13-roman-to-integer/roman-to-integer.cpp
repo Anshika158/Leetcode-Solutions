@@ -9,10 +9,10 @@ public:
         mpp.insert({'C' , 100});
         mpp.insert({'D' , 500});
         mpp.insert({'M' , 1000});
-        
+        int n=s.size();
         int answer=0;
-        for(int i=0 ; i <s.size() ; i++){
-            if(i+1<s.size() && mpp[s[i]]<mpp[s[i+1]]){
+        for(int i=0 ; i <n ; i++){
+            if(i+1<n && mpp[s[i]]<mpp[s[i+1]]){
                 answer+=mpp[s[i+1]]-mpp[s[i]];
                 i++;
             }else{
