@@ -17,24 +17,28 @@ public:
         }
         return false;
     }
-    int solve(vector<string>&arr ,int idx , int n, string result ){
+    
+    int solve(vector<string>&arr ,int idx , int n, string result , unordered_map<string , int>&mpp){
         if(idx==n) return result.length();
 
         int include=0 ;
         int exclude=0;
-        if(hasD(result,arr[idx])){
-            exclude=solve(arr,idx+1,n,result);
-        }else{
-            include = solve(arr,idx+1,n,result+arr[idx]);
-
-            exclude = solve(arr,idx+1,n,result);
+        if(mpp.find(result)!=mpp.end()){
+            return mpp[result];
         }
-        return max(include , exclude);
+        if(hasD(result,arr[idx])){
+            exclude=solve(arr,idx+1,n,result,mpp);
+        }else{
+            include = solve(arr,idx+1,n,result+arr[idx],mpp);
+
+            exclude = solve(arr,idx+1,n,result , mpp);
+        }
+        return mpp[result]=max(include , exclude);
     }
     int maxLength(vector<string>& arr) {
         int n=arr.size();
         string result="";
-         
-         return solve(arr , 0 , n , result);
+        unordered_map<string , int>mpp;
+        return solve(arr , 0 , n , result , mpp);
     }
 };
