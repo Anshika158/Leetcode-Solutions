@@ -40,7 +40,7 @@ public:
         //     return vec1[0]<=vec2[0];
         // };
         //sort on the basis of startTime
-        sort(array.begin(),array.end() , [](auto &vec1 , auto &vec2){
+        sort(array.begin(),array.end() , [&](auto &vec1 , auto &vec2){
             return vec1[0]<vec2[0];
         });
         return solve(array,0,dp);
