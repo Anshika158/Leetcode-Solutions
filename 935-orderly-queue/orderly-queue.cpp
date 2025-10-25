@@ -7,7 +7,7 @@ public:
         }
         string result = s;
         int n=s.size();
-        for(int i=1 ; i<=n-1 ; i++){
+        for(int i=1 ; i<n ; i++){
             string temp = s.substr(i)+s.substr(0,i);
             result=min(result,temp);
         }
