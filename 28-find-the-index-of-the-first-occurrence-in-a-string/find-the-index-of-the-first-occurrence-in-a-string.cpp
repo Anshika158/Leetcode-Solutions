@@ -6,7 +6,7 @@ public:
         int i=0;
         for(int i=0 ; i<m ; i++){
             int j=0;
-            while(j<n && haystack[i+j]==needle[j]){ 
+            while(j<n && haystack[i+j]==needle[j]){  
                 //i++; as it will not return the first index
                 j++;
             }
